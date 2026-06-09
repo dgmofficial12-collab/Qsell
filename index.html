@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q-Sell | Premium Local Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="appLoader">
+        <div class="spinner"></div>
+        <h2 style="color: white; font-weight: 700;">කරුණාකර රැඳී සිටින්න...</h2>
+        <p style="color: #cbd5e1; font-size: 14px;">දේශීය නිෂ්පාදන ලෝකය සූදානම් වෙමින් පවතී</p>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="window.switchPage('homePage')">Q-Sell</div>
+            
+            <div id="userStripe" class="user-status-stripe" style="display: none;">
+                <span id="userEmailNav"></span>
+            </div>
+
+            <div class="nav-links">
+                <button class="nav-btn active" id="btn-home" onclick="window.switchPage('homePage')">🏠 හෝම්</button>
+                <button class="nav-btn" id="btn-fav" onclick="window.switchPage('favPage')">❤️ සුරැකි</button>
+                <button class="nav-btn" id="btn-dash" onclick="window.switchPage('dashboardPage')">🏪 Dashboard</button>
+                <button class="lang-btn" id="langSwitchBtn" onclick="window.toggleLanguage()">සිංහල / EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="homePage" class="app-page active-page">
+        <div class="search-bar-container">
+            <input type="text" id="searchBox" placeholder="🔎 Search Products / 🔍 භාණ්ඩ සොයන්න..." oninput="window.renderMarketplace()">
+            
+            <div class="filter-row">
+                <select id="filterProvince" onchange="window.renderMarketplace()">
+                    <option value="">සෑම පළාතක්ම (All Provinces)</option>
+                    <option value="Western">Western (බස්නාහිර)</option>
+                    <option value="Central">Central (මධ්‍යම)</option>
+                    <option value="Southern">Southern (දකුණ)</option>
+                    <option value="North Western">North Western (වයඹ)</option>
+                    <option value="Sabaragamuwa">Sabaragamuwa (සබරගමුව)</option>
+                    <option value="Uva">Uva (ඌව)</option>
+                    <option value="North Central">North Central (උතුරු මැද)</option>
+                    <option value="Northern">Northern (උතුර)</option>
+                    <option value="Eastern">Eastern (නැඟෙනහිර)</option>
+                </select>
+
+                <select id="filterDistrict" onchange="window.renderMarketplace()">
+                    <option value="">සෑම දිස්ත්‍රික්කයක්ම (All Districts)</option>
+                    <option value="Colombo">Colombo</option>
+                    <option value="Gampaha">Gampaha</option>
+                    <option value="Kalutara">Kalutara</option>
+                    <option value="Kandy">Kandy</option>
+                    <option value="Matale">Matale</option>
+                    <option value="Nuwara Eliya">Nuwara Eliya</option>
+                    <option value="Galle">Galle</option>
+                    <option value="Matara">Matara</option>
+                    <option value="Hambantota">Hambantota</option>
+                    <option value="Kurunegala">Kurunegala</option>
+                    <option value="Puttalam">Puttalam</option>
+                    <option value="Ratnapura">Ratnapura</option>
+                    <option value="Kegalle">Kegalle</option>
+                    <option value="Badulla">Badulla</option>
+                    <option value="Moneragala">Moneragala</option>
+                    <option value="Anuradhapura">Anuradhapura</option>
+                    <option value="Polonnaruwa">Polonnaruwa</option>
+                    <option value="Jaffna">Jaffna</option>
+                    <option value="Kilinochchi">Kilinochchi</option>
+                    <option value="Mannar">Mannar</option>
+                    <option value="Vavuniya">Vavuniya</option>
+                    <option value="Mullaitivu">Mullaitivu</option>
+                    <option value="Batticaloa">Batticaloa</option>
+                    <option value="Ampara">Ampara</option>
+                    <option value="Trincomalee">Trincomalee</option>
+                </select>
+
+                <input type="search" id="filterTown" placeholder="📍 නගරය (Town)..." autocomplete="off" oninput="window.renderMarketplace()">
+            </div>
+        </div>
+
+        <div class="demo-toggle-box">
+            <button class="toggle-demo-btn" id="demoToggleBtn" onclick="window.toggleDemoProducts()">✨ Hide Demo Products (සැඟවීම)</button>
+        </div>
+
+        <div class="container">
+            <div class="grid-container" id="productDisplayHome"></div>
+        </div>
+    </div>
+
+    <div id="favPage" class="app-page">
+        <div class="page-header-banner">
+            <h1>❤️ ඔබ සුරැකි භාණ්ඩ (Favorites)</h1>
+            <p>ඔබ පසුව බැලීමට සුරකින ලද සියලුම දෑ මෙතැනින් බලාගත හැක.</p>
+        </div>
+        <div class="container" style="margin-top: 30px;">
+            <div class="grid-container" id="productDisplayFav"></div>
+        </div>
+    </div>
+
+    <div id="miniShopPage" class="app-page">
+        <div class="page-header-banner">
+            <h1 id="miniShopTitle">🏪 දේශීය සාප්පුව</h1>
+            <p id="miniShopDesc">මෙම වෙළෙන්දා සතු සියලුම නිෂ්පාදන එකම ස්ථානයකින්.</p>
+        </div>
+        <div class="container" style="margin-top: 30px;">
+            <div class="grid-container" id="productDisplayShop"></div>
+        </div>
+    </div>
+
+    <div id="dashboardPage" class="app-page">
+        <div class="page-header-banner">
+            <h1 id="dashShopTitle">🏪 Seller Dashboard</h1>
+            <p>ඔබේ වෙළඳසැලේ විස්තර සහ භාණ්ඩ කළමනාකරණය මෙතැනින් සිදුකරන්න.</p>
+        </div>
+
+        <div class="container" style="margin-top: 30px;">
+            <div id="authSection" class="auth-container">
+                <h3 style="margin-bottom: 20px; text-align: center;">👤 වෙළෙන්දෙකු ලෙස ඇතුළු වීම</h3>
+                <div class="form-group">
+                    <label>Email ලිපිනය</label>
+                    <input type="email" id="email" placeholder="example@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label>මුරපදය (Password)</label>
+                    <input type="password" id="password" placeholder="******">
+                </div>
+                <div class="auth-buttons">
+                    <button class="hero-btn-main" onclick="window.login()">ඇතුළු වීම (Login)</button>
+                    <button class="hero-btn-main register-btn" onclick="window.register()">ලියාපදිංචි වීම (Register)</button>
+                </div>
+            </div>
+
+            <div id="sellerSection" class="dashboard-grid" style="display: none;">
+                <div class="dash-card">
+                    <h3 class="dash-card-title">🛠️ කඩේ විස්තර සකසන්න</h3>
+                    <div class="form-group">
+                        <label>කඩේ නම (Shop Name) *</label>
+                        <input type="text" id="setupShopName" placeholder="उदा: හෙළ නිෂ්පාදන අලෙවිසැල">
+                    </div>
+                    <div class="form-group">
+                        <label>දුරකථන අංකය (Phone Number) *</label>
+                        <input type="text" id="setupPhone" placeholder="0771234567">
+                    </div>
+                    <div class="form-group">
+                        <label>පළාත (Province) *</label>
+                        <select id="setupShopProv">
+                            <option value="Western">Western</option>
+                            <option value="Central">Central</option>
+                            <option value="Southern">Southern</option>
+                            <option value="North Western">North Western</option>
+                            <option value="Sabaragamuwa">Sabaragamuwa</option>
+                            <option value="Uva">Uva</option>
+                            <option value="North Central">North Central</option>
+                            <option value="Northern">Northern</option>
+                            <option value="Eastern">Eastern</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>දිස්ත්‍රික්කය (District) *</label>
+                        <select id="setupShopDist">
+                            <option value="Colombo">Colombo</option>
+                            <option value="Gampaha">Gampaha</option>
+                            <option value="Kalutara">Kalutara</option>
+                            <option value="Kandy">Kandy</option>
+                            <option value="Matale">Matale</option>
+                            <option value="Nuwara Eliya">Nuwara Eliya</option>
+                            <option value="Galle">Galle</option>
+                            <option value="Matara">Matara</option>
+                            <option value="Hambantota">Hambantota</option>
+                            <option value="Kurunegala">Kurunegala</option>
+                            <option value="Puttalam">Puttalam</option>
+                            <option value="Ratnapura">Ratnapura</option>
+                            <option value="Kegalle">Kegalle</option>
+                            <option value="Badulla">Badulla</option>
+                            <option value="Moneragala">Moneragala</option>
+                            <option value="Anuradhapura">Anuradhapura</option>
+                            <option value="Polonnaruwa">Polonnaruwa</option>
+                            <option value="Jaffna">Jaffna</option>
+                            <option value="Kilinochchi">Kilinochchi</option>
+                            <option value="Mannar">Mannar</option>
+                            <option value="Vavuniya">Vavuniya</option>
+                            <option value="Mullaitivu">Mullaitivu</option>
+                            <option value="Batticaloa">Batticaloa</option>
+                            <option value="Ampara">Ampara</option>
+                            <option value="Trincomalee">Trincomalee</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>ළඟම නගරය (Town) *</label>
+                        <input type="text" id="setupShopTown" placeholder="उदा: Maharagama">
+                    </div>
+                    <div class="form-group">
+                        <label>කඩේ ගැන විස්තරයක් (Shop Description)</label>
+                        <textarea id="setupShopDesc" rows="2" placeholder="ඔබේ නිෂ්පාදන ගැන කෙටි හැඳින්වීමක්..."></textarea>
+                    </div>
+                    <button class="hero-btn-main" onclick="window.saveSellerProfile()">💾 Profile එක සුරකින්න</button>
+                    <button class="hero-btn-main logout-btn" onclick="window.logout()">🔴 Logout වෙන්න</button>
+                </div>
+
+                <div class="dash-card">
+                    <h3 class="dash-card-title">➕ නව භාණ්ඩයක් ඇතුළත් කිරීම</h3>
+                    <input type="hidden" id="editProductId">
+                    
+                    <div class="form-group">
+                        <label>භාණ්ඩයේ නම (Product Title) *</label>
+                        <input type="text" id="pName" placeholder="उदा: පිරිසිදු කිතුල් පැණි">
+                    </div>
+                    <div class="form-group">
+                        <label>වර්ගීකරණය (Category) *</label>
+                        <select id="pCat">
+                            <option value="Foods">Foods</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Services">Services</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>මිල රුපියල් වලින් (Price in LKR) *</label>
+                        <input type="number" id="pPrice" placeholder="1500">
+                    </div>
+                    <div class="form-group">
+                        <label style="display: flex; flex-direction: row; align-items: center; gap: 8px; cursor: pointer;">
+                            <input type="checkbox" id="pNeg" style="width: auto;"> මිල සාකච්ඡා කරගත හැක
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>භාණ්ඩයේ විස්තරය (Description) *</label>
+                        <textarea id="pDesc" rows="3" placeholder="විස්තරයක්..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>ඡායාරූපය (Product Photo) - Max 3MB</label>
+                        <input type="file" id="pImage" accept="image/*" onchange="window.validateImageSize(this)">
+                    </div>
+                    <div class="form-group" id="statusGroup" style="display: none;">
+                        <label>භාණ්ඩයේ වත්මන් තත්ත්වය (Status)</label>
+                        <select id="pStatus">
+                            <option value="available">Available</option>
+                            <option value="sold">SOLD OUT</option>
+                        </select>
+                    </div>
+                    <button class="hero-btn-main" onclick="window.processAndAddProduct()" style="background-color: var(--success);">🚀 දැන්වීම පළකරන්න</button>
+                </div>
+            </div>
+
+            <div id="sellerAdsContainer" style="display: none; margin-top: 40px;">
+                <h3 style="margin-bottom: 20px; border-bottom: 2px solid var(--navy); padding-bottom: 5px;">📋 ඔබ පළකළ දැන්වීම්</h3>
+                <div class="grid-container" id="productDisplayDashboard"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="firebase.js"></script>
+    <script type="module" src="demoData.js"></script>
+    <script type="module" src="imageHelper.js"></script>
+    <script type="module" src="products.js"></script>
+    <script type="module" src="auth.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>

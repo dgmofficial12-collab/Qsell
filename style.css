@@ -1,0 +1,433 @@
+/* 🏷️ ROOT STYLING AND GLOBAL VARIABLES */
+:root {
+    --primary: #e67e22;
+    --primary-dark: #d35400;
+    --navy: #2c3e50;
+    --bg: #f8fafc;
+    --success: #2ecc71;
+    --danger: #e74c3c;
+    --border: #e2e8f0;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg);
+    color: #334155;
+}
+
+/* 🙈 MODULAR PAGE NAVIGATION ENGINE */
+.app-page {
+    display: none !important;
+}
+.app-page.active-page {
+    display: block !important;
+}
+
+/* 🔠 SINHALA BOLD INTENSITY */
+body, p, span, h1, h2, h3, option, select, input, button, textarea, .card-title, .price {
+    font-weight: 700 !important;
+}
+
+/* 🧭 NAVIGATION BAR PREMIUM GRID */
+.navbar {
+    background-color: var(--navy);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: 800 !important;
+    cursor: pointer;
+}
+
+.nav-links {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.nav-btn {
+    background: transparent;
+    color: #cbd5e1;
+    border: 1px solid transparent;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover, .nav-btn.active {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+    border-color: rgba(255,255,255,0.2);
+}
+
+/* 👤 USER STATUS NAV STRIPE */
+.user-status-stripe {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* 🌐 LANGUAGE CHANGER BUTTON */
+.lang-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: 0.2s;
+}
+.lang-btn:hover {
+    background: var(--primary-dark);
+}
+
+/* 🔍 SEARCH AND FILTER CONTAINER CARD */
+.search-bar-container {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    max-width: 1200px;
+    margin: 25px auto;
+}
+
+#searchBox {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.filter-row select, .filter-row input {
+    flex: 1;
+    min-width: 220px;
+    padding: 12px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    background: white;
+    box-sizing: border-box;
+}
+
+/* 🚫 DEMO MANAGEMENT HIDE/SHOW BAR */
+.demo-toggle-box {
+    max-width: 1200px;
+    margin: 15px auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.toggle-demo-btn {
+    background: var(--navy);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* 🎴 GRID SYSTEM & MARKET AD CARDS */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.page-header-banner {
+    text-align: center; 
+    padding: 45px 10px; 
+    background: white; 
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+.page-header-banner h1 {
+    color: var(--navy);
+    margin: 0;
+    font-size: 28px;
+}
+.page-header-banner p {
+    color: #64748b;
+    margin: 8px 0 0 0;
+    font-size: 15px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.card-img-container {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    background: #f1f5f9;
+}
+
+.card-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.featured-badge {
+    position: absolute;
+    top: 10px; left: 10px;
+    background: var(--primary);
+    color: white;
+    padding: 4px 10px;
+    font-size: 11px;
+    border-radius: 6px;
+    z-index: 10;
+}
+
+.reserved-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center; align-items: center;
+    color: white; font-size: 18px; font-weight: bold !important;
+    z-index: 5;
+}
+
+.card-content {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.card-shop {
+    font-size: 13px;
+    color: var(--primary);
+}
+
+.card-title {
+    font-size: 17px;
+    margin: 0;
+    color: var(--navy);
+    line-height: 1.4;
+}
+
+.loc-time {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.price {
+    font-size: 21px;
+    color: #1e293b;
+    margin-top: 4px;
+}
+
+.safety-warning {
+    font-size: 11px;
+    color: var(--danger);
+    background: #fef2f2;
+    padding: 6px 10px;
+    border-radius: 6px;
+    margin: 4px 0;
+}
+
+.buyer-utility-row {
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+.util-btn {
+    width: 100%;
+    background: #f1f5f9;
+    border: 1px solid var(--border);
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.util-btn.faved {
+    background: #fee2e2;
+    color: var(--danger);
+    border-color: #fca5a5;
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.action-btn {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.call-btn {
+    background: #e2e8f0;
+    color: var(--navy);
+}
+.call-btn:hover { background: #cbd5e1; }
+
+.wa-btn {
+    background: var(--success);
+    color: white;
+}
+.wa-btn:hover { background: #27ae60; }
+
+
+/* 🔐 ACCOUNT & DASHBOARD INTERFACE */
+.auth-container {
+    max-width: 450px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid var(--border);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: var(--navy);
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    padding: 12px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 15px;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.auth-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.hero-btn-main {
+    width: 100%;
+    background: var(--navy);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.hero-btn-main:hover { background: #1a252f; }
+
+.register-btn { background: #34495e; }
+.register-btn:hover { background: #2c3e50; }
+
+.logout-btn { background: #95a5a6; margin-top: 15px; }
+.logout-btn:hover { background: #7f8c8d; }
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.dash-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    border: 1px solid var(--border);
+}
+
+.dash-card-title {
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 8px;
+    color: var(--navy);
+}
+
+
+/* ⏳ APP LOADER ANIMATION */
+#appLoader {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--navy);
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    z-index: 9999;
+}
+
+.spinner {
+    width: 50px; height: 50px;
+    border: 5px solid rgba(255,255,255,0.1);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
